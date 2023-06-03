@@ -6,7 +6,7 @@ namespace baseballcards.Models
     public class Cards
     {
         public Cards() { }
-        public string SetName { get; set; } = "";
+        public string SetName { get; set; } = ""; 
         public string Year { get; set; } = "";
         public string Subset { get; set; } = "";
         public string Cardnumber { get; set; } = "";
