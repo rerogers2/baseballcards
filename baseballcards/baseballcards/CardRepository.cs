@@ -16,7 +16,7 @@ namespace baseballcards
         }
         public IEnumerable<Cards> GetAllCards()
         {
-            return _conn.Query<Cards>("SELECT * FROM cardcollection;");
+            return _conn.Query<Cards>("SELECT * FROM cardcollection.cards;");
         }
     }
 }
