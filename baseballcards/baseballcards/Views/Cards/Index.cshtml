@@ -12,6 +12,7 @@
 
 <table class="table">
     <tr>
+        <th>CardID</th>
         <th>Set</th>
         <th>Year</th>
         <th>Subset</th>
@@ -28,6 +29,7 @@
     @foreach (var card in @Model)
     {
         <tr>
+            <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
             <td>@card.SetName</td>
             <td>@card.Year</td>
             <td>@card.Subset</td>

@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+@model Cards
+
+<h3>@Model.Firstname @Model.Lastname Card Information</h3>
+
+<table class="table">
+    <tr>
+        <th>Card ID</th>
+        <th>Set</th>
+        <th>Year</th>
+        <th>Subset</th>
+        <th>Card Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Total Number</th>
+        <th>Info</th>
+        <th>Serial Number</th>
+        <th>Autograph</th>
+        <th>Relic</th>
+    </tr>
+
+    {
+        <tr>
+            <td>@Model.CardID</td>
+            <td>@Model.SetName</td>
+            <td>@Model.Year</td>
+            <td>@Model.Subset</td>
+            <td>@Model.Cardnumber</td>
+            <td>@Model.Firstname</td>
+            <td>@Model.Lastname</td>
+            <td>@Model.TotalNumber</td>
+            <td>@Model.Info</td>
+            <td>@Model.SerialNumber</td>
+            <td>@Model.Autograph</td>
+            <td>@Model.Relic</td>
+        </tr>
+    }
+
+</table>

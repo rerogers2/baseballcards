@@ -18,5 +18,9 @@ namespace baseballcards
         {
             return _conn.Query<Cards>("SELECT * FROM cardcollection.cards;");
         }
+        public Cards GetCard(int id)
+        {
+            return _conn.QuerySingle<Cards>("SELECT * FROM cardcollection.cards WHERE CardID = @id", new { id = id });
+        }
     }
 }

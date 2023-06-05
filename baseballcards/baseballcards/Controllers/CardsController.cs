@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace baseballcards.Controllers
 {
-    public class CardController : Controller
+    public class CardsController : Controller
     {
         private readonly ICardRepository repo;
-        public CardController(ICardRepository repo)
+        public CardsController(ICardRepository repo)
         {
             this.repo = repo;
         }
@@ -18,6 +18,12 @@ namespace baseballcards.Controllers
         {
             var cards = repo.GetAllCards();
             return View(cards);
+        }
+
+        public IActionResult ViewCard(int id)
+        {
+            var card = repo.GetCard(id);
+            return View(card);
         }
     }
 }
