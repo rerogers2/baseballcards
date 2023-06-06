@@ -2,10 +2,9 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Set</h1>
 @model IEnumerable<Cards>
 
 <h2>Baseball Cards</h2>
@@ -30,7 +29,7 @@
     {
         <tr>
             <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
-            <td> <a href=/Cards/ViewSet/@card.SetName>@card.SetName</a> </td>
+            <td>@card.SetName</td>
             <td>@card.Year</td>
             <td>@card.Subset</td>
             <td>@card.Cardnumber</td>

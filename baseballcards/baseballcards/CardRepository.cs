@@ -22,5 +22,13 @@ namespace baseballcards
         {
             return _conn.QuerySingle<Cards>("SELECT * FROM cardcollection.cards WHERE CardID = @id", new { id = id });
         }
+        public IEnumerable<Cards> GetSet(string setname)
+        {
+            return _conn.Query<Cards>("SELECT * FROM cardcollection.cards WHERE SetName = @setname", new { setname = setname });
+        }
+        public void UpdateCard(Cards card)
+        {
+            _conn.Execute("UPDATE cards SET TotalNumber = @totalnumber WHERE CardID = @id", new {totalnumber = card.TotalNumber, id = card.CardID });
+        }
     }
 }

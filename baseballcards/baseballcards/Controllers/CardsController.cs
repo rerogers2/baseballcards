@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using baseballcards.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,40 @@ namespace baseballcards.Controllers
         {
             var card = repo.GetCard(id);
             return View(card);
+        }
+
+        public IActionResult ViewSet(string setname)
+        {
+            // it's not reading in the string setname, so it runs else instead of if
+            if (setname == "Leaf") 
+            {
+                
+                var cards = repo.GetSet(setname);
+                return View(cards);
+            } 
+            else
+            {
+                var cards = repo.GetSet("Donruss");
+                return View(cards);
+            }
+            //var cards = repo.GetSet(setname);
+            //return View(cards);
+        }
+
+        public IActionResult UpdateCard(int id)
+        {
+            Cards card = repo.GetCard(id);
+            if (card == null)
+            {
+                return View("CardNotFound");
+            }
+            return View(card);
+        }
+
+        public IActionResult UpdateCardToDatabase(Cards card)
+        {
+            repo.UpdateCard(card);
+            return RedirectToAction("ViewCard", new { id = card.CardID });
         }
     }
 }
