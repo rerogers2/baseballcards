@@ -1,11 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<Cards>
 
 <h1>Set</h1>
-@model IEnumerable<Cards>
+
 
 <h2>Baseball Cards</h2>
 
@@ -44,3 +40,6 @@
     }
 
 </table>
+<div>
+    <a asp-action="Index"> Return to Full List</a>
+</div>

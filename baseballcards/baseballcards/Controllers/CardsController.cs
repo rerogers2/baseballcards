@@ -30,18 +30,18 @@ namespace baseballcards.Controllers
         public IActionResult ViewSet(string setname)
         {
             // it's not reading in the string setname, so it runs else instead of if
-            /*if (setname == "Leaf") 
-            {
-                
-                var cards = repo.GetSet(setname);
-                return View(cards);
-            } 
-            else
-            {
-                var cards = repo.GetSet("Donruss");
-                return View(cards);
-            }*/
-            var cards = repo.GetSet(setname.ToString);
+            //if (setname == "Leaf") 
+            //{
+
+            //    var cards = repo.GetSet(setname);
+            //    return View(cards);
+            //} 
+            //else
+            //{
+            //    var cards = repo.GetSet("Donruss");
+            //    return View(cards);
+            //}
+            var cards = repo.GetSet(setname);
             return View(cards);
         }
 
