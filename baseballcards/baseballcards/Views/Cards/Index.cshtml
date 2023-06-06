@@ -30,7 +30,8 @@
     {
         <tr>
             <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
-            <td> <a href=/Cards/ViewSet/@card.SetName>@card.SetName</a> </td>
+            @*@<td> <a href=/Cards/ViewSet/@card.SetName>@card.SetName</a> </td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewSet" asp-route-id="@card.SetName"> @card.SetName </a> </td>
             <td>@card.Year</td>
             <td>@card.Subset</td>
             <td>@card.Cardnumber</td>

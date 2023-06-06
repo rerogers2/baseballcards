@@ -30,7 +30,7 @@ namespace baseballcards.Controllers
         public IActionResult ViewSet(string setname)
         {
             // it's not reading in the string setname, so it runs else instead of if
-            if (setname == "Leaf") 
+            /*if (setname == "Leaf") 
             {
                 
                 var cards = repo.GetSet(setname);
@@ -40,9 +40,9 @@ namespace baseballcards.Controllers
             {
                 var cards = repo.GetSet("Donruss");
                 return View(cards);
-            }
-            //var cards = repo.GetSet(setname);
-            //return View(cards);
+            }*/
+            var cards = repo.GetSet(setname.ToString);
+            return View(cards);
         }
 
         public IActionResult UpdateCard(int id)
