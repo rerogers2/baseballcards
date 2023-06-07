@@ -7,7 +7,7 @@
 
 <table class="table">
     <tr>
-        <th>CardID</th>
+        @*<th>CardID</th>*@
         <th>Set</th>
         <th>Year</th>
         <th>Subset</th>
@@ -24,7 +24,7 @@
     @foreach (var card in @Model)
     {
             <tr>
-                <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
+                @*<td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>*@
                 <td>@card.SetName</td>
                 <td>@card.Year</td>
                 <td>@card.Subset</td>
@@ -36,6 +36,7 @@
                 <td>@card.SerialNumber</td>
                 <td>@card.Autograph</td>
                 <td>@card.Relic</td>
+            <td> <a asp-controller="Cards" asp-action="ViewCard" asp-route-id="@card.CardID"> View Card </a></td>
             </tr>
     }
 

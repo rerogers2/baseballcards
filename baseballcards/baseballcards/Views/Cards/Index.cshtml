@@ -12,7 +12,7 @@
 
 <table class="table">
     <tr>
-        <th>CardID</th>
+        @*<th>CardID</th>*@
         <th>Set</th>
         <th>Year</th>
         <th>Subset</th>
@@ -29,8 +29,8 @@
     @foreach (var card in @Model)
     {
         <tr>
-            <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
-            @*@<td> <a href=/Cards/ViewSet/@card.SetName>@card.SetName</a> </td>*@
+@*            <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
+*@            @*@<td> <a href=/Cards/ViewSet/@card.SetName>@card.SetName</a> </td>*@
             <td> <a asp-controller="Cards" asp-action="ViewSet" asp-route-id="@card.CardID"> @card.SetName </a> </td>
             @*<td>@card.Year</td>*@
             <td> <a asp-controller="Cards" asp-action="ViewYear" asp-route-id="@card.CardID"> @card.Year </a> </td>
@@ -49,6 +49,7 @@
             <td> <a asp-controller="Cards" asp-action="ViewAutograph" asp-route-id="@card.CardID"> @card.Autograph </a> </td>
             @*<td>@card.Relic</td>*@
             <td> <a asp-controller="Cards" asp-action="ViewRelic" asp-route-id="@card.CardID"> @card.Relic </a> </td>
+            <td> <a asp-controller="Cards" asp-action="ViewCard" asp-route-id="@card.CardID"> View Card </a></td>
         </tr>
     }
 
