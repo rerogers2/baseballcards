@@ -32,16 +32,23 @@
             <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
             @*@<td> <a href=/Cards/ViewSet/@card.SetName>@card.SetName</a> </td>*@
             <td> <a asp-controller="Cards" asp-action="ViewSet" asp-route-id="@card.CardID"> @card.SetName </a> </td>
-            <td>@card.Year</td>
-            <td>@card.Subset</td>
-            <td>@card.Cardnumber</td>
-            <td>@card.Firstname</td>
-            <td>@card.Lastname</td>
+            @*<td>@card.Year</td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewYear" asp-route-id="@card.CardID"> @card.Year </a> </td>
+            @*<td>@card.Subset</td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewSubset" asp-route-id="@card.CardID"> @card.Subset </a> </td>
+            @*<td>@card.Cardnumber</td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewCardnumber" asp-route-id="@card.CardID"> @card.Cardnumber </a> </td>
+            @*<td>@card.Firstname</td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewFirstname" asp-route-id="@card.CardID"> @card.Firstname </a> </td>
+            @*<td>@card.Lastname</td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewLastname" asp-route-id="@card.CardID"> @card.Lastname </a> </td>
             <td>@card.TotalNumber</td>
             <td>@card.Info</td>
             <td>@card.SerialNumber</td>
-            <td>@card.Autograph</td>
-            <td>@card.Relic</td>
+            @*<td>@card.Autograph</td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewAutograph" asp-route-id="@card.CardID"> @card.Autograph </a> </td>
+            @*<td>@card.Relic</td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewRelic" asp-route-id="@card.CardID"> @card.Relic </a> </td>
         </tr>
     }
 
