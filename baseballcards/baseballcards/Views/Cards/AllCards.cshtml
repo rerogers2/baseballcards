@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "All Cards";
+}
+
+<h1>All Cards</h1>
+@model IEnumerable<Cards>
+
+<h2>Baseball Cards</h2>
+@*<form method="post" class="searchForm">
+    <input type="text" name="searchString" />
+    <input type="submit" value="Search" />
+</form>*@
+
+<table class="table">
+    <tr>
+        @*<th>CardID</th>*@
+        <th>Set</th>
+        <th>Year</th>
+        <th>Subset</th>
+        <th>Card Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Total Number</th>
+        <th>Info</th>
+        <th>Serial Number</th>
+        <th>Autograph</th>
+        <th>Relic</th>
+    </tr>
+
+    @foreach (var card in @Model)
+    {
+            <tr>
+            @*            <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
+*@            @*@<td> <a href=/Cards/ViewSet/@card.SetName>@card.SetName</a> </td>*@
+                <td> <a asp-controller="Cards" asp-action="ViewSet" asp-route-id="@card.CardID"> @card.SetName </a> </td>
+            @*<td>@card.Year</td>*@
+                <td> <a asp-controller="Cards" asp-action="ViewYear" asp-route-id="@card.CardID"> @card.Year </a> </td>
+            @*<td>@card.Subset</td>*@
+                <td> <a asp-controller="Cards" asp-action="ViewSubset" asp-route-id="@card.CardID"> @card.Subset </a> </td>
+            @*<td>@card.Cardnumber</td>*@
+                <td> <a asp-controller="Cards" asp-action="ViewCardnumber" asp-route-id="@card.CardID"> @card.Cardnumber </a> </td>
+            @*<td>@card.Firstname</td>*@
+                <td> <a asp-controller="Cards" asp-action="ViewFirstname" asp-route-id="@card.CardID"> @card.Firstname </a> </td>
+            @*<td>@card.Lastname</td>*@
+                <td> <a asp-controller="Cards" asp-action="ViewLastname" asp-route-id="@card.CardID"> @card.Lastname </a> </td>
+                <td>@card.TotalNumber</td>
+                <td>@card.Info</td>
+                <td>@card.SerialNumber</td>
+            @*<td>@card.Autograph</td>*@
+                <td> <a asp-controller="Cards" asp-action="ViewAutograph" asp-route-id="@card.CardID"> @card.Autograph </a> </td>
+            @*<td>@card.Relic</td>*@
+                <td> <a asp-controller="Cards" asp-action="ViewRelic" asp-route-id="@card.CardID"> @card.Relic </a> </td>
+                <td> <a asp-controller="Cards" asp-action="ViewCard" asp-route-id="@card.CardID"> View Card </a></td>
+            </tr>
+    }
+
+</table>

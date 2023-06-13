@@ -4,6 +4,7 @@ using System.Data;
 using Dapper;
 using System.Collections.Generic;
 using Org.BouncyCastle.Asn1.X509;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace baseballcards
 {
@@ -15,6 +16,14 @@ namespace baseballcards
         {
             _conn = conn;
         }
+        // trying to create a search
+        public IEnumerable<Cards> SearchCard(string searchString)
+        {
+            searchString = $"%{searchString}%";
+            var cards = _conn.Query<Cards>("SELECT * FROM cardcollection.cards WHERE SetName LIKE @searchString OR Year LIKE @searchString OR Subset LIKE @searchString OR Cardnumber LIKE @searchString OR Firstname LIKE @searchString OR Lastname LIKE @searchString OR Info LIKE @searchString OR SerialNumber LIKE @searchString OR Autograph LIKE @searchString OR Relic LIKE @searchString", new { searchString = searchString });
+            return cards;
+        }
+
         // THIS IS NOT READY TO BE USED
         public int TotalCount()
         {

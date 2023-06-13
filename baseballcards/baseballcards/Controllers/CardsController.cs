@@ -14,8 +14,19 @@ namespace baseballcards.Controllers
         {
             this.repo = repo;
         }
+
+
+        public async Task<IActionResult> Index(string searchString)
+        {
+            //var cards = repo.GetAllCards();
+            ViewData["CurrentFilter"] = searchString;
+            var cards = repo.SearchCard(searchString);
+            return View(cards);
+        }
+
+
         // view all cards
-        public IActionResult Index()
+        public IActionResult AllCards()
         {
             var cards = repo.GetAllCards();
             return View(cards);
