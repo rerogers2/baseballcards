@@ -1,4 +1,11 @@
-﻿@model IEnumerable<Cards>
+﻿@{
+    ViewData["Title"] = "Set";
+    var items = ViewBag.Items as IEnumerable<Cards>;
+    var totalPages = ViewBag.TotalPages;
+    var currentPage = ViewBag.CurrentPage;
+}
+
+@model IEnumerable<Cards>
 
 <h1>Set</h1>
 
@@ -20,7 +27,7 @@
         <th>Relic</th>
     </tr>
 
-    @foreach (var card in @Model)
+    @foreach (var card in items) @*@Model*@
     {
         <tr>
             <td>@card.SetName</td>
@@ -39,6 +46,23 @@
     }
 
 </table>
+<div>
+
+    @if (currentPage > 0)
+    {
+            <a href="@Url.Action("ViewSet", new { page = currentPage - 1 })"
+       class="btn btn-default">
+                &laquo; Prev
+            </a>
+    }
+    @if (currentPage < totalPages)
+    {
+            <a href="@Url.Action("ViewSet", new { page = currentPage + 1 })"
+       class="btn btn-default">
+                Next &raquo;
+            </a>
+    }
+</div>
 <div>
     <a asp-action="Index"> Return to Full List</a>
 </div>

@@ -43,10 +43,24 @@ namespace baseballcards.Controllers
 
 
         // view all cards
-        public IActionResult AllCards()
+        public IActionResult AllCards(int? page)
         {
             var cards = repo.GetAllCards();
-            return View(cards);
+            // calculate page size
+            int pageSize = 1000;
+            // calculate total number of pages
+            int totalItems = cards.Count();
+            int totalPages = (int)Math.Ceiling((decimal)totalItems / pageSize);
+            // Set the current page number
+            int pageNumber = (page ?? 1);
+            pageNumber = Math.Max(1, Math.Min(pageNumber, totalPages));
+            // Retrieve the items for the current page
+            var pagedItems = cards.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+            // Pass the paginated items and pagination information to the view
+            ViewBag.Items = pagedItems;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = pageNumber;
+            return View();
         }
         // view single card
         public IActionResult ViewCard(int id)
@@ -57,11 +71,25 @@ namespace baseballcards.Controllers
 
 
         //view all cards by SetName
-        public IActionResult ViewSet(int id)
+        public IActionResult ViewSet(int id, int? page)
         {
             var setname = Convert.ToString(repo.GetCard(id).SetName);
             var cards = repo.GetSet(setname);
-            return View(cards);
+            // calculate page size
+            int pageSize = 1000;
+            // calculate total number of pages
+            int totalItems = cards.Count();
+            int totalPages = (int)Math.Ceiling((decimal)totalItems / pageSize);
+            // Set the current page number
+            int pageNumber = (page ?? 1);
+            pageNumber = Math.Max(1, Math.Min(pageNumber, totalPages));
+            // Retrieve the items for the current page
+            var pagedItems = cards.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+            // Pass the paginated items and pagination information to the view
+            ViewBag.Items = pagedItems;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = pageNumber;
+            return View();
         }
         // view all cards by Year
         public IActionResult ViewYear(int id) 
