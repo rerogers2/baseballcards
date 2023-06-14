@@ -16,12 +16,11 @@ namespace baseballcards
         {
             _conn = conn;
         }
-        // trying to create a search
+        // Card search
         public IEnumerable<Cards> SearchCard(string searchString)
         {
             searchString = $"%{searchString}%";
-            var cards = _conn.Query<Cards>("SELECT * FROM cardcollection.cards WHERE SetName LIKE @searchString OR Year LIKE @searchString OR Subset LIKE @searchString OR Cardnumber LIKE @searchString OR Firstname LIKE @searchString OR Lastname LIKE @searchString OR Info LIKE @searchString OR SerialNumber LIKE @searchString OR Autograph LIKE @searchString OR Relic LIKE @searchString", new { searchString = searchString });
-            return cards;
+            return _conn.Query<Cards>("SELECT * FROM cardcollection.cards WHERE SetName LIKE @searchString OR Year LIKE @searchString OR Subset LIKE @searchString OR Cardnumber LIKE @searchString OR Firstname LIKE @searchString OR Lastname LIKE @searchString OR Info LIKE @searchString OR SerialNumber LIKE @searchString OR Autograph LIKE @searchString OR Relic LIKE @searchString", new { searchString = searchString });
         }
 
         // THIS IS NOT READY TO BE USED

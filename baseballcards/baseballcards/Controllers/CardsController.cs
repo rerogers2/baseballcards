@@ -1,8 +1,10 @@
 ﻿using baseballcards.Models;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace baseballcards.Controllers
@@ -15,13 +17,15 @@ namespace baseballcards.Controllers
             this.repo = repo;
         }
 
-
-        public async Task<IActionResult> Index(string searchString)
+        //Does a search
+        public async Task<IActionResult> Index(string searchString, int? page)
         {
-            //var cards = repo.GetAllCards();
+            var pageNumber = page ?? 1;
             ViewData["CurrentFilter"] = searchString;
             var cards = repo.SearchCard(searchString);
-            return View(cards);
+            var cardlist = cards.ToPagedListAsync(pageNumber, 10);
+            ViewBag.CardView = cardlist;
+            return View();
         }
 
 
@@ -37,9 +41,9 @@ namespace baseballcards.Controllers
             var card = repo.GetCard(id);
             return View(card);
         }
-        
-        
-        // view all cards by SetName
+
+
+        //view all cards by SetName
         public IActionResult ViewSet(int id)
         {
             var setname = Convert.ToString(repo.GetCard(id).SetName);

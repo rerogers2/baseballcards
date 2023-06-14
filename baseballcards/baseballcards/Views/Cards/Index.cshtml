@@ -3,10 +3,15 @@
 *@
 @{
     ViewData["Title"] = "Search";
+    var pagedList = (IPagedList)ViewBag.CardView;
 }
 
 <h1>Search</h1>
 @model IEnumerable<Cards>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Fluent;
+@using X.PagedList;
+@using X.PagedList.Web.Common;
 
 <h2>Baseball Cards</h2>
 @*<form method="post" class="searchForm">
@@ -38,7 +43,7 @@
         <th>Relic</th>
     </tr>
 
-    @foreach (var card in @Model)
+    @foreach (var card in @*ViewBag.CardView*@@Model)
     {
                 <tr>
             @*            <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
@@ -66,3 +71,9 @@
     }
 
 </table>
+@Html.PagedListPager(pagedList,
+    page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions()
+    {
+        DisplayItemSliceAndTotal = true,
+    })
