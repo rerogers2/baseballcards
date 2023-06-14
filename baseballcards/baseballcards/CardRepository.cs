@@ -24,9 +24,12 @@ namespace baseballcards
         }
 
         // THIS IS NOT READY TO BE USED
-        public int TotalCount()
+        public int TotalCount(IEnumerable<Cards> cardList)
         {
-            return Convert.ToInt32(_conn.Query<Cards>("SELECT sum(TotalNumber) FROM cardcollection.cards;"));
+            var count = 0;
+            foreach (var card in cardList) { count += card.TotalNumber; }
+            return count; 
+            //return Convert.ToInt32(_conn.Query<Cards>("SELECT sum(TotalNumber) FROM cardcollection.cards;"));
         }
 
         public IEnumerable<Cards> GetAllCards()

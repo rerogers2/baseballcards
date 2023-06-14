@@ -1,6 +1,11 @@
-﻿@model IEnumerable<Cards>
+﻿@{
+    ViewData["Title"] = "First Name";
+    var items = ViewBag.Items as IEnumerable<Cards>;
+    var totalCount = ViewBag.TotalCount;
+}
+@model IEnumerable<Cards>
 
-<h1>First Name</h1>
+<h1><pre class="tab">First Name                                      Total Count: @totalCount</pre></h1>
 
 
 <h2>Baseball Cards</h2>
@@ -21,7 +26,7 @@
         <th>Relic</th>
     </tr>
 
-    @foreach (var card in @Model)
+    @foreach (var card in items)
     {
         <tr>
             @*<td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>*@

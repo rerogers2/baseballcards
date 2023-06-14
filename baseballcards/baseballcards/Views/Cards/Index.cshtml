@@ -3,9 +3,10 @@
     var items = ViewBag.Items as IEnumerable<Cards>;
     var totalPages = ViewBag.TotalPages;
     var currentPage = ViewBag.CurrentPage;
+    var totalCount = ViewBag.TotalCount;
 }
 
-<h1>Search</h1>
+<h1><pre class="tab">Search                                           Total Count: @totalCount</pre></h1>
 @model IEnumerable<Cards>
 
 <h2>Baseball Cards</h2>
@@ -71,12 +72,12 @@
     {
         <a href="@Url.Action("Index", new { page = currentPage - 1 })"
        class="btn btn-default">
-            &laquo; Prev
+            &laquo; Prev 
         </a>
     }
     @if (currentPage < totalPages)
     {
-        <a href="@Url.Action("Index", new { page = currentPage + 1 })"
+        <a href="@Url.Action("Index", new { Page = currentPage + 1 })"
        class="btn btn-default">
             Next &raquo;
         </a>

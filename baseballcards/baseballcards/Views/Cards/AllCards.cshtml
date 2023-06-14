@@ -3,12 +3,16 @@
     var items = ViewBag.Items as IEnumerable<Cards>;
     var totalPages = ViewBag.TotalPages;
     var currentPage = ViewBag.CurrentPage;
+    var totalCount = ViewBag.TotalCount;
 }
 
-<h1>All Cards</h1>
+<h1><pre class="tab">All Cards                                       Total Count: @totalCount</pre></h1>
 @model IEnumerable<Cards>
 
 <h2>Baseball Cards</h2>
+@*<div>
+    Total Count: @totalCount
+</div>*@
 
 
 <table class="table">
