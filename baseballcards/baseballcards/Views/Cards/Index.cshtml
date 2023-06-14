@@ -3,21 +3,16 @@
 *@
 @{
     ViewData["Title"] = "Search";
-    var pagedList = (IPagedList)ViewBag.CardView;
+    var items = ViewBag.Items as IEnumerable<Cards>;
+    var totalPages = ViewBag.TotalPages;
+    var currentPage = ViewBag.CurrentPage;
 }
 
 <h1>Search</h1>
 @model IEnumerable<Cards>
-@using X.PagedList.Mvc.Core;
-@using X.PagedList.Mvc.Core.Fluent;
-@using X.PagedList;
-@using X.PagedList.Web.Common;
 
 <h2>Baseball Cards</h2>
-@*<form method="post" class="searchForm">
-    <input type="text" name="searchString" />
-    <input type="submit" value="Search" />
-</form>*@
+
 <form asp-action="Index" method="get">
     <div class="form-group">
         <label for="SearchString">Search:</label>
@@ -43,7 +38,8 @@
         <th>Relic</th>
     </tr>
 
-    @foreach (var card in @*ViewBag.CardView*@@Model)
+    @foreach (var card in items) @*@Model*@
+
     {
                 <tr>
             @*            <td> <a href=/Cards/ViewCard/@card.CardID>@card.CardID</a> </td>
@@ -71,9 +67,31 @@
     }
 
 </table>
-@Html.PagedListPager(pagedList,
-    page => Url.Action("Index", new { page }),
-    new PagedListRenderOptions()
+
+@*<div>
+    @for (int i = 1; i <= totalPages; i++)
     {
-        DisplayItemSliceAndTotal = true,
-    })
+        var activeClass = (i == currentPage) ? "active" : "";
+        <a href="@Url.Action("Index", new { page = i })" class="@activeClass">@i</a>
+    }
+</div>*@
+<div>
+    @* rest of file with view *@
+
+    @if (currentPage > 0)
+    {
+        <a href="@Url.Action("Index", new { page = currentPage - 1 })"
+       class="btn btn-default">
+            &laquo; Prev
+        </a>
+    }
+    @if (currentPage < totalPages)
+    {
+        <a href="@Url.Action("Index", new { page = currentPage + 1 })"
+       class="btn btn-default">
+            Next &raquo;
+        </a>
+    }
+</div>
+
+

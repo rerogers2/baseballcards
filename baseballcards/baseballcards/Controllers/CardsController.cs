@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace baseballcards.Controllers
 {
@@ -20,11 +21,23 @@ namespace baseballcards.Controllers
         //Does a search
         public async Task<IActionResult> Index(string searchString, int? page)
         {
-            var pageNumber = page ?? 1;
             ViewData["CurrentFilter"] = searchString;
             var cards = repo.SearchCard(searchString);
-            var cardlist = cards.ToPagedListAsync(pageNumber, 10);
-            ViewBag.CardView = cardlist;
+            // calculate page size
+            int pageSize = 100;
+            // calculate total number of pages
+            int totalItems = cards.Count();
+            int totalPages = (int)Math.Ceiling((decimal)totalItems / pageSize);
+            // Set the current page number
+            int pageNumber = (page ?? 1);
+            pageNumber = Math.Max(1, Math.Min(pageNumber, totalPages));
+            // Retrieve the items for the current page
+            var pagedItems = cards.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+            // Pass the paginated items and pagination information to the view
+            ViewBag.Items = pagedItems;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = pageNumber;
+
             return View();
         }
 
