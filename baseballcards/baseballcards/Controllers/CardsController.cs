@@ -24,7 +24,8 @@ namespace baseballcards.Controllers
             ViewData["CurrentFilter"] = searchString;
             var cards = repo.SearchCard(searchString);
             ViewBag.TotalCount = repo.TotalCount(cards);
-            // calculate page size
+
+            //calculate page size
             int pageSize = 10;
             // calculate total number of pages
             int totalItems = cards.Count();
