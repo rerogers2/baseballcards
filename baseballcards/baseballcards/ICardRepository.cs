@@ -29,6 +29,12 @@ namespace baseballcards
         
         // update total amount of a card
         public void UpdateCard(Cards card);
+
+        // insert a new card into the database
+        public void InsertCard(Cards cards);
+
+        // delete a card from the database
+        public void DeleteCard(Cards cards);
     }
     
 }

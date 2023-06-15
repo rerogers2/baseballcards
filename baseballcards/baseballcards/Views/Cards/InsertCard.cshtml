@@ -1,0 +1,33 @@
+﻿@model Cards
+
+<h2>Create a New Card</h2>
+
+@using (Html.BeginForm("InsertCardToDatabase", "Cards", "Post"))
+{
+    <input asp-for="CardID" type="hidden" value = "" />
+
+    <label asp-for="Year" class="control-label">Year</label>
+    <input type="text" name="Year" class="form-control" value="" />
+    <label asp-for="SetName" class="control-label">Set</label>
+    <input type="text" name="SetName" class="form-control" value="" />
+    <label asp-for="Subset" class="control-label">Subset</label>
+    <input type="text" name="Subset" class="form-control" value="" />
+    <label asp-for="Cardnumber" class="control-label">Card Number</label>
+    <input type="text" name="Cardnumber" class="form-control" value="" />
+    <label asp-for="Firstname" class="control-label">Firstname</label>
+    <input type="text" name="Firstname" class="form-control" value="" />
+    <label asp-for="Lastname" class="control-label">Lastname</label>
+    <input type="text" name="Lastname" class="form-control" value="" />
+    <label asp-for="TotalNumber" class="control-label">Total Number</label>
+    <input type="text" name="TotalNumber" class="form-control" value="" />
+    <label asp-for="Info" class="control-label">Info</label>
+    <input type="text" name="Info" class="form-control" value="" />
+    <label asp-for="SerialNumber" class="control-label">Serial Number</label>
+    <input type="text" name="SerialNumber" class="form-control" value="" />
+    <label asp-for="Autograph" class="control-label">Autograph</label>
+    <input type="text" name="Autograph" class="form-control" value="" />
+    <label asp-for="Relic" class="control-label">Relic</label>
+    <input type="text" name="Relic" class="form-control" value="" />
+
+    <input type ="submit" value="Create Card" class="btn btn-primary" />
+}

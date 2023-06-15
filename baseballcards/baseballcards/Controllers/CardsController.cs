@@ -165,11 +165,30 @@ namespace baseballcards.Controllers
             }
             return View(card);
         }
-        // update card to database and send by to ViewCard with updated info
+        // update card to database and send to ViewCard with updated info
         public IActionResult UpdateCardToDatabase(Cards card)
         {
             repo.UpdateCard(card);
             return RedirectToAction("ViewCard", new { id = card.CardID });
+        }
+
+        // create a new card to be inserted
+        public IActionResult InsertCard()
+        {
+            var card = new Cards();
+            return View(card);
+        }
+        // insert card to database
+        public IActionResult InsertCardToDatabase(Cards cardToInsert)
+        {
+            repo.InsertCard(cardToInsert);
+            return RedirectToAction("Index");
+        }
+        // delete card from database
+        public IActionResult DeleteCard(Cards card)
+        {
+            repo.DeleteCard(card);
+            return RedirectToAction("Index");
         }
     }
 }

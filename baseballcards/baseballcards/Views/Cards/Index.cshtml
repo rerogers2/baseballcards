@@ -20,6 +20,10 @@
     </div>
 </form>
 
+<div style="diplay: block">
+    <a href="/Cards/InsertCard/">Insert a New Card</a>
+</div>
+
 <table class="table">
     <tr>
         @*<th>CardID</th>*@
@@ -52,7 +56,7 @@
             <td>@card.SerialNumber</td>
             <td> <a asp-controller="Cards" asp-action="ViewAutograph" asp-route-id="@card.CardID"> @card.Autograph </a> </td>
             <td> <a asp-controller="Cards" asp-action="ViewRelic" asp-route-id="@card.CardID"> @card.Relic </a> </td>
-            <td> <a asp-controller="Cards" asp-action="ViewCard" asp-route-id="@card.CardID"> View Card </a></td>
+            <td> <a asp-controller="Cards" asp-action="ViewCard" asp-route-id="@card.CardID">View</a></td>
         </tr>
     }
 

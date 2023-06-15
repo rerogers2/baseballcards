@@ -79,5 +79,19 @@ namespace baseballcards
         {
             _conn.Execute("UPDATE cards SET TotalNumber = @totalnumber WHERE CardID = @id", new {totalnumber = card.TotalNumber, id = card.CardID });
         }
+
+        public void InsertCard(Cards cardToInsert)
+        {
+            _conn.Execute("INSERT INTO cardcollection.cards (SetName, Year, Subset, Cardnumber, Firstname, Lastname, TotalNumber, Info, SerialNumber, Autograph, Relic) " +
+                "VALUES (@SetName, @Year, @Subset, @Cardnumber, @Firstname, @Lastname, @TotalNumber, @Info, @SerialNumber, @Autograph, @Relic);", 
+                new { SetName = cardToInsert.SetName, Year = cardToInsert.Year, Subset = cardToInsert.Subset, Cardnumber = cardToInsert.Cardnumber, Firstname = cardToInsert.Firstname,
+                Lastname = cardToInsert.Lastname, TotalNumber = cardToInsert.TotalNumber, Info = cardToInsert.Info, SerialNumber = cardToInsert.SerialNumber,
+                Autograph = cardToInsert.Autograph, Relic = cardToInsert.Relic });
+        }
+
+        public void DeleteCard(Cards cards)
+        {
+            _conn.Execute("DELETE FROM cardcollection.cards WHERE CardID = @id", new { id = cards.CardID });
+        }
     }
 }

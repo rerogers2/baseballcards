@@ -2,6 +2,10 @@
 
 <h3>@Model.Firstname @Model.Lastname Card Information</h3>
 
+<div style="display: block">
+    <a href="/Cards/UpdateCard/@Model.CardID">Update this Card</a>
+</div>
+
 <table class="table">
     <tr>
         @*<th>Card ID</th>*@
@@ -37,7 +41,11 @@
 </table>
 
 <div style="display: block">
-    <a href="/Cards/UpdateCard/@Model.CardID">Update this Card</a>
+    @using (Html.BeginForm("DeleteCard", "Cards", "Post"))
+    {
+        <input type="hidden" asp-for="CardID" value="@Model.CardID" />
+        <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this card" />
+    }
 </div>
  
 <div>
