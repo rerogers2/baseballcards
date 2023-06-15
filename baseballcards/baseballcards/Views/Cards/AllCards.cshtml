@@ -4,9 +4,17 @@
     var totalPages = ViewBag.TotalPages;
     var currentPage = ViewBag.CurrentPage;
     var totalCount = ViewBag.TotalCount;
+    var unique = ViewBag.Unique;
 }
 
-<h1><pre class="tab">All Cards                                       Total Count: @totalCount</pre></h1>
+<h1>All Cards</h1>
+<h2 style="text-align:left;">
+    Total Count: @totalCount
+    <span style="float:right;">
+        Unique Count: @unique
+    </span>
+</h2>
+<hr>
 @model IEnumerable<Cards>
 
 <h2>Baseball Cards</h2>

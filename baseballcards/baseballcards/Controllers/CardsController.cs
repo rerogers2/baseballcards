@@ -24,9 +24,10 @@ namespace baseballcards.Controllers
             ViewData["CurrentFilter"] = searchString;
             var cards = repo.SearchCard(searchString);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
 
             //calculate page size
-            int pageSize = 10;
+            int pageSize = 50;
             // calculate total number of pages
             int totalItems = cards.Count();
             int totalPages = (int)Math.Ceiling((decimal)totalItems / pageSize);
@@ -50,6 +51,7 @@ namespace baseballcards.Controllers
             var cards = repo.GetAllCards();
             // get total count
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             // calculate page size
             int pageSize = 1000;
             // calculate total number of pages
@@ -80,6 +82,7 @@ namespace baseballcards.Controllers
             var setname = Convert.ToString(repo.GetCard(id).SetName);
             var cards = repo.GetSet(setname);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             // calculate page size
             int pageSize = 1000;
             // calculate total number of pages
@@ -102,6 +105,7 @@ namespace baseballcards.Controllers
             var year = Convert.ToString(repo.GetCard(id).Year);
             var cards = repo.GetYear(year);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             ViewBag.Items = cards;
             return View();
         }
@@ -110,6 +114,7 @@ namespace baseballcards.Controllers
             var subset = Convert.ToString(repo.GetCard(id).Subset);
             var cards = repo.GetSubset(subset);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             ViewBag.Items = cards;
             return View();
         }
@@ -118,6 +123,7 @@ namespace baseballcards.Controllers
             var cardnumber = Convert.ToString(repo.GetCard(id).Cardnumber);
             var cards = repo.GetCardnumber(cardnumber);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             ViewBag.Items = cards;
             return View();
         }
@@ -126,6 +132,7 @@ namespace baseballcards.Controllers
             var firstname = Convert.ToString(repo.GetCard(id).Firstname);
             var cards = repo.GetFirstname(firstname);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             ViewBag.Items = cards;
             return View();
         }
@@ -134,6 +141,7 @@ namespace baseballcards.Controllers
             var lastname = Convert.ToString(repo.GetCard(id).Lastname);
             var cards = repo.GetLastname(lastname);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             ViewBag.Items = cards;
             return View();
         }
@@ -142,6 +150,7 @@ namespace baseballcards.Controllers
             var autograph = Convert.ToString(repo.GetCard(id).Autograph);
             var cards = repo.GetAutograph(autograph);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             ViewBag.Items = cards;
             return View();
         }
@@ -150,6 +159,7 @@ namespace baseballcards.Controllers
             var relic = Convert.ToString(repo.GetCard(id).Relic);
             var cards = repo.GetRelic(relic);
             ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             ViewBag.Items = cards;
             return View();
         }

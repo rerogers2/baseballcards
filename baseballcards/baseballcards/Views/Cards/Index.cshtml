@@ -4,9 +4,18 @@
     var totalPages = ViewBag.TotalPages;
     var currentPage = ViewBag.CurrentPage;
     var totalCount = ViewBag.TotalCount;
+    var unique = ViewBag.Unique;
 }
 
-<h1><pre class="tab">Search                                           Total Count: @totalCount</pre></h1>
+<h1>Search</h1>
+
+<h2 style="text-align:left;">
+    Total Count: @totalCount
+    <span style="float:right;">
+        Unique Count: @unique
+    </span>
+</h2>
+<hr>
 @model IEnumerable<Cards>
 
 <h2>Baseball Cards</h2>
@@ -20,7 +29,7 @@
     </div>
 </form>
 
-<div style="diplay: block">
+<div style="display: block">
     <a href="/Cards/InsertCard/">Insert a New Card</a>
 </div>
 
@@ -62,14 +71,6 @@
 
 </table>
 
-@* // creates a list of all pages by number <- ugly and old
-<div>
-    @for (int i = 1; i <= totalPages; i++)
-    {
-        var activeClass = (i == currentPage) ? "active" : "";
-        <a href="@Url.Action("Index", new { page = i })" class="@activeClass">@i</a>
-    }
-</div>*@
 <div>
 
     @if (currentPage > 0)
@@ -88,40 +89,3 @@
         </a>
     }
 </div>
-@*<div>
-    <p class="d-flex justify-content-center">Page @currentPage of @totalPages</p>
-
-    <ul class="pagination">
-        <li class="page-item @( currentPage == 1 ? "disabled" : "" )">
-            <a aria-label="Previous" class="page-link"
-                href="@Url.Action("Index", new { page = currentPage - 1, pageSize = 10 })">"
-                //(Model.RouteInfo.ActionName, Model.RouteInfo.ControllerName,
-                //new { page = currentPage - 1, pageSize = 10 })">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-
-        @for (int pageNumber = 1; pageNumber <= totalCount; pageNumber++)
-        {
-                <li class="page-item @( currentPage == pageNumber ? "active" : "" )">
-                    <a class="page-link"
-                    href="@Url.Action("Index", new { page = pageNumber, pageSize = 10 })">
-                        //Model.RouteInfo.ActionName, 
-                        //Model.RouteInfo.ControllerName,
-                        //new { page = pageNumber, pageSize = Model.PageSize })"> 
-                    @pageNumber </a>
-                    </li>
-        }
-
-        <li class="page-item @(currentPage == totalCount ? "disabled" : "")">
-            <a aria-label="Next" class="page-link"
-                href="@Url.Action("Index", new { page = currentPage + 1, pageSize = 10 })">"
-                      //(Model.RouteInfo.ActionName, Model.RouteInfo.ControllerName,
-                      //new { page = Model.Page + 1, pageSize = Model.PageSize })">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</div>*@
-
-

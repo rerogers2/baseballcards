@@ -23,13 +23,20 @@ namespace baseballcards
             return _conn.Query<Cards>("SELECT * FROM cardcollection.cards WHERE SetName LIKE @searchString OR Year LIKE @searchString OR Subset LIKE @searchString OR Cardnumber LIKE @searchString OR Firstname LIKE @searchString OR Lastname LIKE @searchString OR Info LIKE @searchString OR SerialNumber LIKE @searchString OR Autograph LIKE @searchString OR Relic LIKE @searchString", new { searchString = searchString });
         }
 
-        // THIS IS NOT READY TO BE USED
+        // returns total number of cards
         public int TotalCount(IEnumerable<Cards> cardList)
         {
             var count = 0;
             foreach (var card in cardList) { count += card.TotalNumber; }
             return count; 
-            //return Convert.ToInt32(_conn.Query<Cards>("SELECT sum(TotalNumber) FROM cardcollection.cards;"));
+        }
+
+        // returns unique instance of card (individual count, not duplicates)
+        public int UniqueCount(IEnumerable<Cards> cardList)
+        {
+            var count = 0;
+            foreach (var card in cardList) { count++; }
+            return count;
         }
 
         public IEnumerable<Cards> GetAllCards()

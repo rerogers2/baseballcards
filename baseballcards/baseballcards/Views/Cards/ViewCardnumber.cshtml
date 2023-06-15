@@ -2,11 +2,19 @@
     ViewData["Title"] = "Card Number";
     var items = ViewBag.Items as IEnumerable<Cards>;
     var totalCount = ViewBag.TotalCount;
+    var unique = ViewBag.Unique;
 }
 
 @model IEnumerable<Cards>
 
-<h1><pre class="tab">Card Number                                     Total Count: @totalCount</pre></h1>
+<h1>Card Number</h1>
+<h2 style="text-align:left;">
+    Total Count: @totalCount
+    <span style="float:right;">
+        Unique Count: @unique
+    </span>
+</h2>
+<hr>
 
 <h2>Baseball Cards</h2>
 

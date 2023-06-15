@@ -11,6 +11,8 @@ namespace baseballcards
         public IEnumerable<Cards> SearchCard(string searchstring);
         // Give total count
         public int TotalCount(IEnumerable<Cards> cardList);
+        // Unique total cards
+        public int UniqueCount(IEnumerable<Cards> cardList);
         // view all cards
         public IEnumerable<Cards> GetAllCards();
         // view one card at a time
