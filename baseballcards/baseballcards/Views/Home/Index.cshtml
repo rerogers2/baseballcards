@@ -2,8 +2,70 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baseball Card Collection</title>
+    <link rel="stylesheet" href="~/Shared/Style.css" asp-append-version="true" />
+    
+    <style>
+        body {
+            width: 100%;
+            min-height: 80vh;
+            background-image: linear-gradient(rgba(111,51,0.5,0.7),rgba(0,8,51,0.9)), url(../Shared/MinuteMaid2.jpg)/*url(/Shared/images/MinuteMaid2.jpg)*/;
+            background-position: center;
+            background-size: cover;
+            background
+        }
 
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title{
+            color:honeydew;
+            width: 100%;
+            font-size: 50px;
+            font-family: Cambria;
+        }
+        .form-group {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.2);
+            align-items: center;
+            border-radius: 60px;
+            padding: 10px 20px;
+            backdrop-filter: blur(4px) saturate(180%);
+        }
+        .form-group input {
+            background: transparent;
+            flex: 1;
+            border: 0;
+            outline: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: honeydew;
+        }
+        ::placeholder{
+            color: honeydew;
+        }
+
+        
+    </style>
+   
+</head>
+
+<body>
+
+    <div class="title">
+        Buddy's Baseball Cards
+    </div>
+    <div class="container">
+        <form asp-controller="Cards" asp-action="Index" method="get" class="form-group">
+            <input type="text" placeholder="simple search" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-primary"/>
+        </form>
+    </div>
+   
+</body>

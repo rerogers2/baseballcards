@@ -1,0 +1,14 @@
+﻿*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    padding: 5%;
+    background-image: linear-gradient(rgba(0,8,51,0.9),rgba(0,8,51,0.9)), url(~/wwwroot/images/MinuteMaid2.jpg);
+    background-position: center;
+    background-size: cover;
+}
