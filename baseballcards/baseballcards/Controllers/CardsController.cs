@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Configuration;
 
 namespace baseballcards.Controllers
 {
@@ -18,7 +19,42 @@ namespace baseballcards.Controllers
             this.repo = repo;
         }
 
-        //Does a search
+        // Does a search (complex)
+        public async Task<IActionResult> ViewSearch(int? page/*SearchModel card*/)
+        {
+            var card = new SearchModel();
+            ViewData["CurrentSetName"] = card.SetName;
+            ViewData["CurrentYear"] = card.Year;
+            ViewData["CurrentSubset"] = card.Subset;
+            ViewData["CurrentCardnumber"] = card.Cardnumber;
+            ViewData["CurrentFirstname"] = card.Firstname;
+            ViewData["CurrentLastname"] = card.Lastname;
+            ViewData["CurrentInfo"] = card.Info;
+            ViewData["CurrentSerialNumber"] = card.SerialNumber;
+            ViewData["CurrentAutograph"] = card.Autograph;
+            ViewData["CurrentRelic"] = card.Relic;
+
+            var cards = repo.ComplexSearch(card);
+
+            //calculate page size
+            int pageSize = 50;
+            // calculate total number of pages
+            int totalItems = cards.Count();
+            int totalPages = (int)Math.Ceiling((decimal)totalItems / pageSize);
+            // Set the current page number
+            int pageNumber = (page ?? 1);
+            pageNumber = Math.Max(1, Math.Min(pageNumber, totalPages));
+            // Retrieve the items for the current page
+            var pagedItems = cards.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+            // Pass the paginated items and pagination information to the view
+            ViewBag.Items = pagedItems;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = pageNumber;
+            ViewBag.setname = card.SetName; 
+            return View();
+        }
+
+        //Does a search (simple)
         public async Task<IActionResult> Index(string searchString, int? page)
         {
             ViewData["CurrentFilter"] = searchString;

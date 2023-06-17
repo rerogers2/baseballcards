@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Search";
+    var items = ViewBag.Items as IEnumerable<Cards>;
+    var totalPages = ViewBag.TotalPages;
+    var currentPage = ViewBag.CurrentPage;
+    //var totalCount = ViewBag.TotalCount;
+    //var unique = ViewBag.Unique;
+    var blarg = ViewBag.setname;
+}
+<h1>Search Page</h1>
+
+<form asp-action="ViewSearch" method="get">
+    <div class="form-group">
+        <label for="SetName">Setname:</label>
+        <input type="text" name="setName" value="@ViewData["Currentfilter"]" />
+        <label for="Year">Year:</label>
+        <input type="text" name="year" value="@ViewData["CurrentYear"]" />
+        <label for="Subset">Subset:</label>
+        <input type="text" name="subset" value="@ViewData["CurrentSubset"]" />
+        <label for="Cardnumber">Card Number:</label>
+        <input type="text" name="cardnumber" value="@ViewData["CurrentCardnumber"]" />
+        <label for="Firstname">Firstname:</label>
+        <input type="text" name="firstname" value="@ViewData["CurrentFirstname"]" />
+        <label for="Lastname">Lastname:</label>
+        <input type="text" name="lastname" value="@ViewData["CurrentLastname"]" />
+        <label for="Info">Info:</label>
+        <input type="text" name="info" value="@ViewData["CurrentInfo"]" />
+        <label for="SerialNumber">Serial Number:</label>
+        <input type="text" name="serialNumber" value="@ViewData["CurrentSerialNumber"]" />
+        <label for="Autograph">Autograph:</label>
+        <input type="text" name="autograph" value="@ViewData["CurrentAutograph"]" />
+        <label for="Relic">Relic:</label>
+        <input type="text" name="relic" value="@ViewData["CurrentRelic"]" />
+
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+@model IEnumerable<Cards>
+ViewBag.setname = @blarg
+
+<table class="table">
+    <tr>
+        @*<th>CardID</th>*@
+        <th>Set</th>
+        <th>Year</th>
+        <th>Subset</th>
+        <th>Card Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Total Number</th>
+        <th>Info</th>
+        <th>Serial Number</th>
+        <th>Autograph</th>
+        <th>Relic</th>
+    </tr>
+
+    @foreach (var card in items) @*@Model*@
+
+    {
+        <tr>
+            @*@<td> <a href=/Cards/ViewSet/@card.SetName>@card.SetName</a> </td>*@
+            <td> <a asp-controller="Cards" asp-action="ViewSet" asp-route-id="@card.CardID"> @card.SetName </a> </td>
+            <td> <a asp-controller="Cards" asp-action="ViewYear" asp-route-id="@card.CardID"> @card.Year </a> </td>
+            <td> <a asp-controller="Cards" asp-action="ViewSubset" asp-route-id="@card.CardID"> @card.Subset </a> </td>
+            <td> <a asp-controller="Cards" asp-action="ViewCardnumber" asp-route-id="@card.CardID"> @card.Cardnumber </a> </td>
+            <td> <a asp-controller="Cards" asp-action="ViewFirstname" asp-route-id="@card.CardID"> @card.Firstname </a> </td>
+            <td> <a asp-controller="Cards" asp-action="ViewLastname" asp-route-id="@card.CardID"> @card.Lastname </a> </td>
+            <td>@card.TotalNumber</td>
+            <td>@card.Info</td>
+            <td>@card.SerialNumber</td>
+            <td> <a asp-controller="Cards" asp-action="ViewAutograph" asp-route-id="@card.CardID"> @card.Autograph </a> </td>
+            <td> <a asp-controller="Cards" asp-action="ViewRelic" asp-route-id="@card.CardID"> @card.Relic </a> </td>
+            <td> <a asp-controller="Cards" asp-action="ViewCard" asp-route-id="@card.CardID">View</a></td>
+        </tr>
+    }
+
+</table>
