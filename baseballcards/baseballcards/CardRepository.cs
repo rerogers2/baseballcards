@@ -17,23 +17,23 @@ namespace baseballcards
             _conn = conn;
         }
         // Search cards (complex) <- not working yet
-        public IEnumerable<Cards> ComplexSearch(SearchModel card)
+        public IEnumerable<Cards> ComplexSearch(string setName, string year, string subset, string cardnumber, string firstname, string lastname, string info, string serialNumber, string autograph, string relic)
         {
             var result = GetAllCards();
-            if (card != null)
-            {
-                if (!string.IsNullOrEmpty(card.SetName)) { result = result.Where(x => x.SetName == card.SetName); }
-                if (!string.IsNullOrEmpty(card.Year)) { result = result.Where(x => x.Year == card.Year); }
-                if (!string.IsNullOrEmpty(card.Subset)) { result = result.Where(x => x.Subset == card.Subset); }
-                if (!string.IsNullOrEmpty(card.Cardnumber)) { result = result.Where(x => x.Cardnumber == card.Cardnumber); }
-                if (!string.IsNullOrEmpty(card.Firstname)) { result = result.Where(x => x.Firstname == card.Firstname); }
-                if (!string.IsNullOrEmpty(card.Lastname)) { result = result.Where(x => x.Lastname == card.Lastname); }
-                if (!string.IsNullOrEmpty(card.Info)) { result = result.Where(x => x.Info == card.Info); }
-                if (!string.IsNullOrEmpty(card.SerialNumber)) { result = result.Where(x => x.SerialNumber == card.SerialNumber); }
-                if (!string.IsNullOrEmpty(card.Autograph)) { result = result.Where(x => x.Autograph == card.Autograph); }
-                if (!string.IsNullOrEmpty(card.Relic)) { result = result.Where(x => x.Relic == card.Relic); }
+            //if (card != null)
+            //{
+                if (!string.IsNullOrEmpty(setName)) { result = result.Where(x => x.SetName.ToLower() == setName.ToLower()); }
+                if (!string.IsNullOrEmpty(year)) { result = result.Where(x => x.Year == year); }
+                if (!string.IsNullOrEmpty(subset)) { result = result.Where(x => x.Subset.ToLower() == subset.ToLower()); }
+                if (!string.IsNullOrEmpty(cardnumber)) { result = result.Where(x => x.Cardnumber.ToLower() == cardnumber.ToLower()); }
+                if (!string.IsNullOrEmpty(firstname)) { result = result.Where(x => x.Firstname.ToLower() == firstname.ToLower()); }
+                if (!string.IsNullOrEmpty(lastname)) { result = result.Where(x => x.Lastname.ToLower() == lastname.ToLower()); }
+                if (!string.IsNullOrEmpty(info)) { result = result.Where(x => x.Info.ToLower() == info.ToLower()); }
+                if (!string.IsNullOrEmpty(serialNumber)) { result = result.Where(x => x.SerialNumber.ToLower() == serialNumber.ToLower()); }
+                if (!string.IsNullOrEmpty(autograph)) { result = result.Where(x => x.Autograph.ToLower() == autograph.ToLower()); }
+                if (!string.IsNullOrEmpty(relic)) { result = result.Where(x => x.Relic.ToLower() == relic.ToLower()); }
 
-            }
+            //}
 
             return result;
         }

@@ -8,7 +8,7 @@ namespace baseballcards
     public interface ICardRepository
     {
         // Search cards (complex)
-        public IEnumerable<Cards> ComplexSearch(SearchModel card);
+        public IEnumerable<Cards> ComplexSearch(string setName, string year, string subset, string cardnumber, string firstname, string lastname, string info, string serialNumber, string autograph, string relic);
         // Search cards (simple)
         public IEnumerable<Cards> SearchCard(string searchstring);
         // Give total count

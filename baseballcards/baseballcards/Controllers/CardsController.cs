@@ -20,22 +20,22 @@ namespace baseballcards.Controllers
         }
 
         // Does a search (complex)
-        public async Task<IActionResult> ViewSearch(int? page/*SearchModel card*/)
+        public async Task<IActionResult> ViewSearch(string setName, string year, string subset, string cardnumber, string firstname, string lastname, string info, string serialNumber, string autograph, string relic,int? page/*SearchModel card*/)
         {
-            var card = new SearchModel();
-            ViewData["CurrentSetName"] = card.SetName;
-            ViewData["CurrentYear"] = card.Year;
-            ViewData["CurrentSubset"] = card.Subset;
-            ViewData["CurrentCardnumber"] = card.Cardnumber;
-            ViewData["CurrentFirstname"] = card.Firstname;
-            ViewData["CurrentLastname"] = card.Lastname;
-            ViewData["CurrentInfo"] = card.Info;
-            ViewData["CurrentSerialNumber"] = card.SerialNumber;
-            ViewData["CurrentAutograph"] = card.Autograph;
-            ViewData["CurrentRelic"] = card.Relic;
+            ViewData["CurrentSetName"] = setName;
+            ViewData["CurrentYear"] = year;
+            ViewData["CurrentSubset"] = subset;
+            ViewData["CurrentCardnumber"] = cardnumber;
+            ViewData["CurrentFirstname"] = firstname;
+            ViewData["CurrentLastname"] = lastname;
+            ViewData["CurrentInfo"] = info;
+            ViewData["CurrentSerialNumber"] = serialNumber;
+            ViewData["CurrentAutograph"] = autograph;
+            ViewData["CurrentRelic"] = relic;
 
-            var cards = repo.ComplexSearch(card);
-
+            var cards = repo.ComplexSearch(setName, year, subset, cardnumber, firstname, lastname, info, serialNumber, autograph, relic);
+            ViewBag.TotalCount = repo.TotalCount(cards);
+            ViewBag.Unique = repo.UniqueCount(cards);
             //calculate page size
             int pageSize = 50;
             // calculate total number of pages
@@ -49,15 +49,14 @@ namespace baseballcards.Controllers
             // Pass the paginated items and pagination information to the view
             ViewBag.Items = pagedItems;
             ViewBag.TotalPages = totalPages;
-            ViewBag.CurrentPage = pageNumber;
-            ViewBag.setname = card.SetName; 
+            ViewBag.CurrentPage = pageNumber; 
             return View();
         }
 
         //Does a search (simple)
         public async Task<IActionResult> Index(string searchString, int? page)
         {
-            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentFilter"] = searchString;  // ONLY displays what was typed in after search
             var cards = repo.SearchCard(searchString);
             ViewBag.TotalCount = repo.TotalCount(cards);
             ViewBag.Unique = repo.UniqueCount(cards);

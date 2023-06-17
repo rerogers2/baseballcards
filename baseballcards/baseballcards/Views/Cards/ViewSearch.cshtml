@@ -3,40 +3,62 @@
     var items = ViewBag.Items as IEnumerable<Cards>;
     var totalPages = ViewBag.TotalPages;
     var currentPage = ViewBag.CurrentPage;
-    //var totalCount = ViewBag.TotalCount;
-    //var unique = ViewBag.Unique;
-    var blarg = ViewBag.setname;
+    var totalCount = ViewBag.TotalCount;
+    var unique = ViewBag.Unique;
 }
 <h1>Search Page</h1>
-
+<h2 style="text-align:left;">
+    Total Count: @totalCount
+    <span style="float:right;">
+        Unique Count: @unique
+    </span>
+</h2>
+<h2>Baseball Cards</h2>
+<style>
+    form { display: table;}
+    p { display: table-row;}
+    label { display: table-cell;}
+    input {display: table-cell;}
+    
+</style>
 <form asp-action="ViewSearch" method="get">
-    <div class="form-group">
+    <p class="form-group">
         <label for="SetName">Setname:</label>
-        <input type="text" name="setName" value="@ViewData["Currentfilter"]" />
+        <input type="text" name="setName" value="@ViewData["CurrentSetName"]" />
+        
         <label for="Year">Year:</label>
         <input type="text" name="year" value="@ViewData["CurrentYear"]" />
+       
         <label for="Subset">Subset:</label>
         <input type="text" name="subset" value="@ViewData["CurrentSubset"]" />
+        
         <label for="Cardnumber">Card Number:</label>
         <input type="text" name="cardnumber" value="@ViewData["CurrentCardnumber"]" />
+    </p>
+    <p>
         <label for="Firstname">Firstname:</label>
         <input type="text" name="firstname" value="@ViewData["CurrentFirstname"]" />
+    
         <label for="Lastname">Lastname:</label>
         <input type="text" name="lastname" value="@ViewData["CurrentLastname"]" />
+        
         <label for="Info">Info:</label>
         <input type="text" name="info" value="@ViewData["CurrentInfo"]" />
+        
         <label for="SerialNumber">Serial Number:</label>
         <input type="text" name="serialNumber" value="@ViewData["CurrentSerialNumber"]" />
+     </p>
+     <p>
         <label for="Autograph">Autograph:</label>
         <input type="text" name="autograph" value="@ViewData["CurrentAutograph"]" />
+        
         <label for="Relic">Relic:</label>
         <input type="text" name="relic" value="@ViewData["CurrentRelic"]" />
-
+    </p>
         <input type="submit" value="Search" class="btn btn-primary" />
-    </div>
+    @*</div>*@
 </form>
 @model IEnumerable<Cards>
-ViewBag.setname = @blarg
 
 <table class="table">
     <tr>
@@ -75,3 +97,42 @@ ViewBag.setname = @blarg
     }
 
 </table>
+
+<div>
+
+    @if (currentPage > 0)
+    {
+        <a href="@Url.Action("ViewSearch", new { setName = @ViewData["CurrentSetName"],
+                                                 year = @ViewData["CurrentYear"],
+                                                 subset = @ViewData["CurrentSubset"],
+                                                 cardnumber = @ViewData["CurrentCardnumber"],
+                                                 firstname = @ViewData["CurrentFirstname"],
+                                                 lastname = @ViewData["CurrentLastname"],
+                                                 info = @ViewData["CurrentInfo"],
+                                                 serialNumber = @ViewData["CurrentSerialNumber"],
+                                                 autograph = @ViewData["CurrentAutograph"],
+                                                 relic = @ViewData["CurrentRelic"],
+                                                 page = currentPage - 1 })"
+       class="btn btn-default">
+            &laquo; Prev
+        </a>
+
+    }
+    @if (currentPage < totalPages)
+    {
+        <a href="@Url.Action("ViewSearch", new { setName = @ViewData["CurrentSetName"],
+                                                 year = @ViewData["CurrentYear"],
+                                                 subset = @ViewData["CurrentSubset"],
+                                                 cardnumber = @ViewData["CurrentCardnumber"],
+                                                 firstname = @ViewData["CurrentFirstname"],
+                                                 lastname = @ViewData["CurrentLastname"],
+                                                 info = @ViewData["CurrentInfo"],
+                                                 serialNumber = @ViewData["CurrentSerialNumber"],
+                                                 autograph = @ViewData["CurrentAutograph"],
+                                                 relic = @ViewData["CurrentRelic"], 
+                                                 page = currentPage + 1 })"
+       class="btn btn-default">
+            Next &raquo;
+        </a>
+    }
+</div>
